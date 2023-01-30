@@ -112,4 +112,18 @@ section.resume-section {
 a {
   color: #2b74a9; }
   a:hover, a:focus, a:active {
-    color: #1d5074; }
+    color: #1d5074;
+}
+
+.parent {
+  /* 1️⃣ enable scrolling */
+  overflow: auto;
+    
+  /* 2️⃣ enable scroll-snapping on horizontal axis */
+  scroll-snap-type: y mandatory; 
+}
+
+.child {
+  /* 3️⃣ snap to the start of the element*/
+  scroll-snap-align: start;
+}
