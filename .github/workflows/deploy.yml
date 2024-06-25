@@ -3,7 +3,7 @@ name: Build and deploy Jekyll site to GitHub Pages
 on:
     push:
         branches:
-            - master # Trigger on pushes to the main branch
+            - main # Trigger on pushes to the main branch
     schedule:
         - cron: "0 0 * * *" # Scheduled to run daily at midnight UTC
 
@@ -37,3 +37,15 @@ jobs:
             - name: Cleanup
               run: |
                   bundle exec jekyll clean
+
+            - name: Debug Log Files
+              run: |
+                  ls -R ./_site  # List all files in _site directory for debugging
+
+            - name: Display Gemfile.lock
+              run: |
+                  cat Gemfile.lock  # Display Gemfile.lock for version checks
+
+            - name: Display Bundler Environment
+              run: |
+                  bundle env  # Display Bundler environment for further debugging
