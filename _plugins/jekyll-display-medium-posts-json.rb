@@ -1,34 +1,54 @@
-require 'uri'
-require 'net/http'
+require 'open-uri'
 require 'json'
 require 'nokogiri'
+require 'jekyll'
+
 module Jekyll
   class JekyllDisplayMediumPosts < Generator
     safe true
     priority :high
-def generate(site)
+
+    def generate(site)
       jekyll_coll = Jekyll::Collection.new(site, 'medium_posts_json')
       site.collections['medium_posts_json'] = jekyll_coll
-      uri = URI("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@Josh-Crotty")
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      request = Net::HTTP::Get.new(uri)
-      response = http.request(request)
-      data = JSON.parse(response.read_body)
-      data['items'].each do |item|
-        title = item['title']
-        path = "./medium_posts/" + title + ".md"
+
+      rss_feed_url = "https://medium.com/feed/@Josh-Crotty"
+      rss_content = URI.open(rss_feed_url).read
+      rss_doc = Nokogiri::XML(rss_content)
+
+      rss_doc.xpath('//item').each do |item|
+        title_node = item.at_xpath('title')
+        next unless title_node
+
+        title = title_node.content.strip
+        path = "./medium_posts/" + title.gsub(/[^0-9A-Za-z]/, '') + ".md"
         path = site.in_source_dir(path)
         doc = Jekyll::Document.new(path, { :site => site, :collection => jekyll_coll })
+
         puts "====== #{title} ======"
-        puts "#{item['link']}"
-        doc.data['title'] = title;
-        doc.data['image'] = item['thumbnail'];
-        doc.data['link'] = item['link'];
-        doc.data['date'] = item['pubDate'];
-        doc.data['categories'] = item['categories'];
-        html_document = Nokogiri::HTML(item['description']);
-        doc.data['description'] = html_document.search('p').to_html;
+
+        link_node = item.at_xpath('link')
+        pub_date_node = item.at_xpath('pubDate')
+        content_node = item.at_xpath('content:encoded')
+        categories = item.xpath('category').map(&:content)
+
+        link = link_node ? link_node.content.strip : ''
+        pub_date = pub_date_node ? pub_date_node.content.strip : ''
+        content = content_node ? content_node.content : ''
+
+        doc.data['title'] = title
+        doc.data['link'] = link
+        doc.data['date'] = pub_date
+        doc.data['categories'] = categories
+
+        # Parse the content to extract description and image
+        html_content = Nokogiri::HTML(content)
+        description = html_content.search('p').to_html
+        thumbnail = html_content.at_xpath('//img/@src')
+
+        doc.data['description'] = description
+        doc.data['image'] = thumbnail ? thumbnail.value : ''
+
         jekyll_coll.docs << doc
       end
     end
