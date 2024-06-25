@@ -2,32 +2,40 @@ name: Build and Deploy to GitHub Pages
 
 on:
     push:
-        branches: ["main"] # Ensure this matches your default branch
+        branches:
+            - master # Trigger on pushes to the main branch
     schedule:
-        - cron: "0 0 * * *" # Adjust as needed
+        - cron: "0 0 * * *" # Scheduled to run daily at midnight UTC
 
 jobs:
-    build:
+    build_and_deploy:
         runs-on: ubuntu-latest
 
         steps:
-            - name: Checkout
+            - name: Checkout Repository
               uses: actions/checkout@v4
 
-            - name: Set up Ruby
-              uses: ruby/setup-ruby@v1
+            - name: Cache Bundler and .asdf
+              uses: actions/cache@v4
               with:
-                  ruby-version: "3.3"
-
-            - name: Install dependencies
-              run: bundle install
-
-            - name: Build site
-              run: bundle exec jekyll build --future
+                  path: |
+                      .asdf/**
+                      vendor/bundle
+                  key: ${{ runner.os }}-cache-${{ hashFiles('**/cache.key') }}
+                  restore-keys: |
+                      ${{ runner.os }}-cache-
 
             - name: Deploy to GitHub Pages
               uses: jeffreytse/jekyll-deploy-action@v0.6.0
               with:
-                  provider: "github"
-                  token: ${{ secrets.GH_PAT }} # Use the PAT
-                  branch: "gh-pages"
+                  provider: "github" # Deployment provider (GitHub Pages)
+                  token: ${{ secrets.GH_PAT }} # Use your Personal Access Token (PAT)
+                  repository: ${{ github.repository }} # Repository name (default to current)
+                  branch: "gh-pages" # Branch to deploy (GitHub Pages branch)
+                  jekyll_src: "./" # Source directory of Jekyll site
+                  jekyll_cfg: "_config.yml" # Jekyll configuration file
+                  ruby_ver: "3.3" # Ruby version (optional)
+                  bundler_ver: "~>2.5.0" # Bundler version (optional)
+                  cname: "" # Custom domain (optional)
+                  actor: ${{ github.actor }} # GitHub username running the workflow
+                  pre_build_commands: "" # Pre-build commands (optional)
