@@ -3,7 +3,7 @@ name: Build and deploy Jekyll site to GitHub Pages
 on:
     push:
         branches:
-            - main # Trigger on pushes to the main branch
+            - master # Trigger on pushes to the main branch
     schedule:
         - cron: "0 0 * * *" # Scheduled to run daily at midnight UTC
 
