@@ -2,39 +2,32 @@ name: Build and Deploy to GitHub Pages
 
 on:
     push:
-        branches:
-            - master # Here source code branch is `main`, it could be other branch
+        branches: ["main"] # Ensure this matches your default branch
     schedule:
-        - cron: "0 0 * * *" # This schedules the workflow to run daily at midnight UTC
-
-permissions:
-    contents: read
-    pages: write
-    id-token: write
+        - cron: "0 0 * * *" # Adjust as needed
 
 jobs:
-    build_and_deploy:
+    build:
         runs-on: ubuntu-latest
+
         steps:
-            - name: Checkout repository
+            - name: Checkout
               uses: actions/checkout@v4
 
-            - name: Cache dependencies
-              uses: actions/cache@v4
+            - name: Set up Ruby
+              uses: ruby/setup-ruby@v1
               with:
-                  path: |
-                      .asdf
-                      vendor/bundle
-                  key: ${{ runner.os }}-cache-${{ hashFiles('**/Gemfile.lock') }}
-                  restore-keys: |
-                      ${{ runner.os }}-cache-
+                  ruby-version: "3.3"
 
-            - name: Build and Deploy to GitHub Pages
+            - name: Install dependencies
+              run: bundle install
+
+            - name: Build site
+              run: bundle exec jekyll build --future
+
+            - name: Deploy to GitHub Pages
               uses: jeffreytse/jekyll-deploy-action@v0.6.0
               with:
                   provider: "github"
-                  token: ${{ secrets.GITHUB_TOKEN }}
-                  branch: "gh-pages" # Default is gh-pages for github provider
-                  jekyll_src: "./" # Default is root directory
-                  jekyll_cfg: "_config.yml" # Default is _config.yml
-                  pre_build_commands: "" # Optional, additional commands before build
+                  token: ${{ secrets.GH_PAT }} # Use the PAT
+                  branch: "gh-pages"
