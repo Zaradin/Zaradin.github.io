@@ -15,7 +15,7 @@ permissions:
     actions: read # Added this line to include the necessary actions: read permission
 
 jobs:
-    build-and-deploy:
+    build:
         runs-on: ubuntu-latest
 
         steps:
@@ -37,14 +37,13 @@ jobs:
               run: bundle exec jekyll build
 
             - name: Upload artifact
-              uses: actions/upload-pages-artifact@v3
+              uses: actions/upload-artifact@v3
               with:
                   name: github-pages
                   path: ./_site
 
-    # Deployment job
     deploy:
-        needs: build # Depends on the completion of the build job
+        needs: build # Depends on the completion of the 'build' job
 
         permissions:
             pages: write
@@ -52,7 +51,7 @@ jobs:
 
         environment:
             name: github-pages
-            url: ${{ steps.deployment.outputs.page_url }}
+            url: ${{ steps.deploy.outputs.page_url }}
 
         runs-on: ubuntu-latest
 
@@ -61,7 +60,7 @@ jobs:
               uses: actions/checkout@v4
 
             - name: Deploy to GitHub Pages
-              id: deployment
+              id: deploy
               uses: actions/deploy-pages@v4
               with:
                   token: ${{ secrets.GITHUB_TOKEN }} # Using the built-in GITHUB_TOKEN
