@@ -3,7 +3,7 @@ name: Build and deploy Jekyll site to GitHub Pages
 on:
     push:
         branches:
-            - master # or master before October 2020
+            - master
     schedule:
         - cron: "0 0 * * *"
 
@@ -11,15 +11,15 @@ jobs:
     github-pages:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v2
-            - uses: actions/cache@v2
+            - uses: actions/checkout@v3 # Update to latest version
+            - uses: actions/cache@v3 # Update to latest version
               with:
                   path: vendor/bundle
                   key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile') }}
                   restore-keys: |
                       ${{ runner.os }}-gems-
-            - uses: helaili/jekyll-action@2.4.0 # Choose any one of the Jekyll Actions
-              with: # Some relative inputs of your action
+            - uses: helaili/jekyll-action@2.4.0
+              with:
                   token: ${{ secrets.GH_PAT }}
                   target_branch: "gh-pages"
               env:
