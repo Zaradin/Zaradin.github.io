@@ -1,38 +1,35 @@
-name: Build and Deploy Jekyll site to GitHub Pages
+name: Build and Deploy Jekyll Site
 
 on:
     push:
         branches:
             - master
     schedule:
-        - cron: "0 0 * * *" # Runs at midnight every day
+        - cron: "0 0 * * *"
 
 jobs:
-    build-deploy:
+    build-and-deploy:
         runs-on: ubuntu-latest
-        permissions:
-            contents: read
-            pages: write
-            id-token: write
-        steps:
-            - name: Checkout Repository
-              uses: actions/checkout@v4
 
-            - name: Setup Pages
-              uses: actions/configure-pages@v5
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
+
+            - name: Setup Ruby
+              uses: ruby/setup-ruby@v1
+              with:
+                  ruby-version: "2.7" # You can change this to the version you are using
+
+            - name: Install dependencies
+              run: |
+                  gem install bundler
+                  bundle install
 
             - name: Build Jekyll site
-              uses: actions/jekyll-build-pages@v1
-              with:
-                  destination: "./_site" # Specify your Jekyll build output directory
-                  token: ${{ secrets.GH_PAT }} # Use your GH_PAT secret for authentication
-
-            - name: Upload artifact
-              uses: actions/upload-pages-artifact@v3
-              with:
-                  path: "./_site" # Specify the path to your Jekyll build output
+              run: bundle exec jekyll build
 
             - name: Deploy to GitHub Pages
-              uses: actions/deploy-pages@v4
+              uses: peaceiris/actions-gh-pages@v3
               with:
-                  token: ${{ secrets.GH_PAT }} # Use your GH_PAT secret for authenticatio
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./_site
