@@ -12,10 +12,9 @@ permissions:
     contents: write
     id-token: write
     pages: write
-    actions: read # Include the necessary actions: read permission
 
 jobs:
-    build:
+    build-and-deploy:
         runs-on: ubuntu-latest
 
         steps:
@@ -37,30 +36,12 @@ jobs:
               run: bundle exec jekyll build
 
             - name: Upload artifact
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-pages-artifact@v3
               with:
                   name: github-pages
                   path: ./_site
 
-    deploy:
-        needs: build # Ensure this matches the name of the preceding job
-
-        permissions:
-            pages: write
-            id-token: write
-
-        environment:
-            name: github-pages
-            url: ${{ steps.deploy.outputs.page_url }}
-
-        runs-on: ubuntu-latest
-
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
-
             - name: Deploy to GitHub Pages
-              id: deploy
               uses: actions/deploy-pages@v4
               with:
-                  token: ${{ secrets.GITHUB_TOKEN }} # Using the built-in GITHUB_TOKEN
+                  token: ${{ secrets.GITHUB_TOKEN }} #GH_PAT
