@@ -1,53 +1,38 @@
-name: Build and Deploy to GitHub Pages
+name: Build and Deploy Jekyll site to GitHub Pages
+
 on:
     push:
         branches:
-            - master # Trigger on pushes to the master branch
+            - master
     schedule:
-        - cron: "0 0 * * *" # Scheduled to run daily at midnight UTC
+        - cron: "0 0 * * *" # Runs at midnight every day
+
 jobs:
-    build_and_deploy:
+    build-deploy:
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            pages: write
+            id-token: write
         steps:
             - name: Checkout Repository
               uses: actions/checkout@v4
-            - name: Cache Dependencies
-              uses: actions/cache@v2
-              with:
-                  path: |
-                      .asdf/**
-                      vendor/bundle
-                  key: ${{ runner.os }}-cache-${{ hashFiles('**/cache.key') }}
-                  restore-keys: |
-                      ${{ runner.os }}-cache-
-            - name: Set up Ruby
-              uses: ruby/setup-ruby@v1
-              with:
-                  ruby-version: "3.0" # Adjust Ruby version as necessary
 
-            - name: Update Bundler
-              run: gem update bundler --no-document
+            - name: Setup Pages
+              uses: actions/configure-pages@v5
 
-            - name: Install dependencies
-              run: |
-                  bundle config set --local path 'vendor/bundle'
-                  bundle install --jobs 4 --retry 3 --without development test --force
             - name: Build Jekyll site
-              run: bundle exec jekyll build
-            - name: Deploy to GitHub Pages
-              uses: jeffreytse/jekyll-deploy-action@v0.6.0
+              uses: actions/jekyll-build-pages@v1
               with:
-                  provider: "github" # Deployment provider (GitHub Pages)
-                  token: ${{ secrets.GH_PAT }} # GitHub PAT for authentication
-                  repository: ${{ github.repository }} # Repository name (default to current)
-                  branch: "gh-pages" # Branch to deploy (GitHub Pages branch)
-                  jekyll_src: "./" # Source directory of Jekyll site
-                  jekyll_cfg: "_config.yml" # Jekyll configuration file
-                  ruby_ver: "3.0" # Ruby version (optional, adjust as needed)
-                  bundler_ver: "~>2.5.0" # Bundler version (optional)
-                  cname: "" # Custom domain (optional)
-                  actor: ${{ github.actor }} # GitHub username running the workflow
-                  pre_build_commands: "" # Pre-build commands (optional)
-            - name: Cleanup
-              run: |
-                  bundle exec jekyll clean
+                  destination: "./_site" # Specify your Jekyll build output directory
+                  token: ${{ secrets.GH_PAT }} # Use your GH_PAT secret for authentication
+
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: "./_site" # Specify the path to your Jekyll build output
+
+            - name: Deploy to GitHub Pages
+              uses: actions/deploy-pages@v4
+              with:
+                  token: ${{ secrets.GH_PAT }} # Use your GH_PAT secret for authenticatio
