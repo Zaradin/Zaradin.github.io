@@ -42,7 +42,26 @@ jobs:
                   name: github-pages
                   path: ./_site
 
+    # Deployment job
+    deploy:
+        needs: build # Depends on the completion of the build job
+
+        permissions:
+            pages: write
+            id-token: write
+
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
             - name: Deploy to GitHub Pages
+              id: deployment
               uses: actions/deploy-pages@v4
               with:
                   token: ${{ secrets.GITHUB_TOKEN }} # Using the built-in GITHUB_TOKEN
