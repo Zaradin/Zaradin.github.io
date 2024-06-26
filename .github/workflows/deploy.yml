@@ -12,7 +12,7 @@ permissions:
     contents: write
     id-token: write
     pages: write
-    actions: read # Added this line to include the necessary actions: read permission
+    actions: read # Include the necessary actions: read permission
 
 jobs:
     build:
@@ -43,7 +43,7 @@ jobs:
                   path: ./_site
 
     deploy:
-        needs: build # Depends on the completion of the 'build' job
+        needs: build # Ensure this matches the name of the preceding job
 
         permissions:
             pages: write
