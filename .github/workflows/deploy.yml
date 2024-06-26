@@ -35,4 +35,4 @@ jobs:
             - name: Deploy to GitHub Pages
               uses: actions/deploy-pages@v4
               with:
-                  token: ${{ secrets.GH_PAT }} # Use your GH_PAT secret for authentication
+                  token: ${{ secrets.GH_PAT }} # Use your GH_PAT secret for authenticatio
