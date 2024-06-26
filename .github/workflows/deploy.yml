@@ -12,6 +12,7 @@ permissions:
     contents: write
     id-token: write
     pages: write
+    actions: read
 
 jobs:
     build-and-deploy:
