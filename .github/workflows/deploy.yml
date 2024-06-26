@@ -1,19 +1,16 @@
 name: Build and Deploy to GitHub Pages
-
 on:
     push:
         branches:
             - master # Trigger on pushes to the master branch
     schedule:
         - cron: "0 0 * * *" # Scheduled to run daily at midnight UTC
-
 jobs:
     build_and_deploy:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Repository
               uses: actions/checkout@v4
-
             - name: Cache Dependencies
               uses: actions/cache@v2
               with:
@@ -23,7 +20,6 @@ jobs:
                   key: ${{ runner.os }}-cache-${{ hashFiles('**/cache.key') }}
                   restore-keys: |
                       ${{ runner.os }}-cache-
-
             - name: Set up Ruby
               uses: ruby/setup-ruby@v1
               with:
@@ -36,10 +32,8 @@ jobs:
               run: |
                   bundle config set --local path 'vendor/bundle'
                   bundle install --jobs 4 --retry 3 --without development test --force
-
             - name: Build Jekyll site
               run: bundle exec jekyll build
-
             - name: Deploy to GitHub Pages
               uses: jeffreytse/jekyll-deploy-action@v0.6.0
               with:
@@ -54,7 +48,6 @@ jobs:
                   cname: "" # Custom domain (optional)
                   actor: ${{ github.actor }} # GitHub username running the workflow
                   pre_build_commands: "" # Pre-build commands (optional)
-
             - name: Cleanup
               run: |
                   bundle exec jekyll clean
