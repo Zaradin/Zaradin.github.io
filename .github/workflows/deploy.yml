@@ -25,4 +25,5 @@ jobs:
               uses: actions/deploy-pages@v4
               with:
                   token: ${{ secrets.GH_PAT }} # Use your GH_PAT secret for authentication
-                  branch: gh-pages # Specify the branch to deploy to, often 'gh-pages'
+              permissions:
+                  id-token: write # Ensure GITHUB_TOKEN has permission "id-token: write"
