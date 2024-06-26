@@ -1,26 +1,28 @@
-name: Build and deploy Jekyll site to GitHub Pages
+name: Build and Deploy Jekyll site to GitHub Pages
 
 on:
     push:
         branches:
             - master
-    schedule:
-        - cron: "0 0 * * *"
 
 jobs:
-    github-pages:
+    build-deploy:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3 # Update to latest version
-            - uses: actions/cache@v3 # Update to latest version
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+
+            - name: Setup Pages
+              uses: actions/configure-pages@v5
+
+            - name: Build Jekyll site
+              uses: actions/jekyll-build-pages@v1
               with:
-                  path: vendor/bundle
-                  key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile') }}
-                  restore-keys: |
-                      ${{ runner.os }}-gems-
-            - uses: helaili/jekyll-action@2.4.0
+                  destination: "./_site" # Specify your Jekyll build output directory
+                  token: ${{ secrets.GH_PAT }} # Use your GH_PAT secret for authentication
+
+            - name: Deploy to GitHub Pages
+              uses: actions/deploy-pages@v4
               with:
-                  token: ${{ secrets.GH_PAT }}
-                  target_branch: "gh-pages"
-              env:
-                  JEKYLL_PAT: ${{ secrets.GH_PAT }}
+                  token: ${{ secrets.GH_PAT }} # Use your GH_PAT secret for authentication
+                  branch: gh-pages # Specify the branch to deploy to, often 'gh-pages'
