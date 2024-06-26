@@ -1,60 +1,51 @@
-name: Build and Deploy to GitHub Pages
+name: Build and deploy Jekyll site to GitHub Pages
 
 on:
     push:
         branches:
-            - master # Trigger on pushes to the master branch
+            - master # Trigger on pushes to the main branch
     schedule:
         - cron: "0 0 * * *" # Scheduled to run daily at midnight UTC
 
 jobs:
-    build_and_deploy:
+    deploy:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Repository
-              uses: actions/checkout@v4
-
-            - name: Cache Dependencies
-              uses: actions/cache@v2
-              with:
-                  path: |
-                      .asdf/**
-                      vendor/bundle
-                  key: ${{ runner.os }}-cache-${{ hashFiles('**/cache.key') }}
-                  restore-keys: |
-                      ${{ runner.os }}-cache-
+              uses: actions/checkout@v2
 
             - name: Set up Ruby
               uses: ruby/setup-ruby@v1
               with:
                   ruby-version: "3.0" # Adjust Ruby version as necessary
 
-            - name: Update Bundler
-              run: gem update bundler --no-document
-
             - name: Install dependencies
               run: |
                   bundle config set --local path 'vendor/bundle'
-                  bundle install --jobs 4 --retry 3 --without development test --force
+                  bundle install --jobs 4 --retry 3 --without development test
 
             - name: Build Jekyll site
               run: bundle exec jekyll build
 
             - name: Deploy to GitHub Pages
-              uses: jeffreytse/jekyll-deploy-action@v0.6.0
+              uses: peaceiris/actions-gh-pages@v4
               with:
-                  provider: "github" # Deployment provider (GitHub Pages)
-                  token: ${{ secrets.GH_PAT }} # GitHub PAT for authentication
-                  repository: ${{ github.repository }} # Repository name (default to current)
-                  branch: "gh-pages" # Branch to deploy (GitHub Pages branch)
-                  jekyll_src: "./" # Source directory of Jekyll site
-                  jekyll_cfg: "_config.yml" # Jekyll configuration file
-                  ruby_ver: "3.0" # Ruby version (optional, adjust as needed)
-                  bundler_ver: "~>2.5.0" # Bundler version (optional)
+                  github_token: ${{ secrets.GH_PAT }} # GitHub token for authentication
+                  publish_dir: ./_site # Directory to deploy
                   cname: "" # Custom domain (optional)
-                  actor: ${{ github.actor }} # GitHub username running the workflow
-                  pre_build_commands: "" # Pre-build commands (optional)
 
             - name: Cleanup
               run: |
                   bundle exec jekyll clean
+
+            - name: Debug Log Files
+              run: |
+                  ls -R ./_site  # List all files in _site directory for debugging
+
+            - name: Display Gemfile.lock
+              run: |
+                  cat Gemfile.lock  # Display Gemfile.lock for version checks
+
+            - name: Display Bundler Environment
+              run: |
+                  bundle env  # Display Bundler environment for further debugging
