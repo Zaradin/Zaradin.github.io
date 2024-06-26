@@ -1,51 +1,60 @@
-name: Build and deploy Jekyll site to GitHub Pages
+# This workflow deploys a Jekyll site to GitHub Pages
+name: Deploy Jekyll site to GitHub Pages
 
 on:
     push:
         branches:
-            - master # Trigger on pushes to the main branch
-    schedule:
-        - cron: "0 0 * * *" # Scheduled to run daily at midnight UTC
+            - master
+    workflow_dispatch: # Allows manual execution from the Actions tab
+
+permissions:
+    contents: read
+    pages: write
+    id-token: write
+
+concurrency:
+    group: "pages"
+    cancel-in-progress: false
 
 jobs:
-    deploy:
+    build:
         runs-on: ubuntu-latest
+
         steps:
-            - name: Checkout Repository
-              uses: actions/checkout@v2
+            - name: Checkout repository
+              uses: actions/checkout@v4
 
             - name: Set up Ruby
               uses: ruby/setup-ruby@v1
               with:
-                  ruby-version: "3.0" # Adjust Ruby version as necessary
+                  ruby-version: "3.1"
 
-            - name: Install dependencies
+            - name: Install dependencies and build Jekyll site
               run: |
-                  bundle config set --local path 'vendor/bundle'
-                  bundle install --jobs 4 --retry 3 --without development test
+                  bundle install
+                  bundle exec jekyll build --baseurl ""
 
-            - name: Build Jekyll site
-              run: bundle exec jekyll build
+            - name: Archive artifacts
+              uses: actions/upload-artifact@v2
+              with:
+                  name: jekyll-site
+                  path: _site # Assuming your Jekyll build output is in _site directory
+
+    deploy:
+        runs-on: ubuntu-latest
+        needs: build
+
+        steps:
+            - name: Download artifacts
+              uses: actions/download-artifact@v2
+              with:
+                  name: jekyll-site
+                  path: _site # Specify the same path as uploaded
 
             - name: Deploy to GitHub Pages
-              uses: peaceiris/actions-gh-pages@v4
+              uses: actions/github-pages-deploy@v4
               with:
-                  github_token: ${{ secrets.GH_PAT }} # GitHub token for authentication
-                  publish_dir: ./_site # Directory to deploy
-                  cname: "" # Custom domain (optional)
+                  github_token: ${{ secrets.GH_PAT }} # Use a personal access token (GH_PAT) with repo scope
+                  branch: gh-pages # Branch to deploy to
+                  folder: _site # Folder to deploy
 
-            - name: Cleanup
-              run: |
-                  bundle exec jekyll clean
-
-            - name: Debug Log Files
-              run: |
-                  ls -R ./_site  # List all files in _site directory for debugging
-
-            - name: Display Gemfile.lock
-              run: |
-                  cat Gemfile.lock  # Display Gemfile.lock for version checks
-
-            - name: Display Bundler Environment
-              run: |
-                  bundle env  # Display Bundler environment for further debugging
