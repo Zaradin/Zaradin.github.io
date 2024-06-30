@@ -89,7 +89,7 @@ Model Development for inference, Web Application Development, and Mobile Applica
 -   **_Technologies Used:_** Pandas, Numpy, Scikit-learn, Matplotlib and Jupyter notebooks
 -   **_Achievements:_**
     -   Implemented a real-time inference model for predictions
-    -   Achieved 91% accuracy on the test dataset
+    -   Achieved 88.52% accuracy on the test dataset
 
 #### Automated Ordering System (Personal Project)
 
@@ -103,8 +103,6 @@ Model Development for inference, Web Application Development, and Mobile Applica
 ---
 
 Thank you for taking the time to read my website. I'm always open to new opportunities and collaborations in the fields of software development and data science.
-
----
 
 ### Contact
 
