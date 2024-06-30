@@ -8,7 +8,7 @@ of the applications.
 
 ---
 
-## University App
+## Food Recipe Android Application
 
 <img src="/assets/img/mobile-app-project.png" alt="University App Screenshot" style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 15px;">
 An Android application developed in Kotlin that allows users to create, read, update, and delete (CRUD) food recipes. This app provides a simple and intuitive interface for managing your favorite recipes, complete with images, descriptions, and ingredients. Additionally, it includes functionality to sort and filter recipes based on various criteria. Along with authentication for user accounts through Google Singin and Email & Password so users can manage their content.
