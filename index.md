@@ -4,21 +4,21 @@ title: Josh Crotty
 subtitle: Student; Software Developer; Data Scientist;
 ---
 
-### Me
+### Bio
 
-**Josh** is a motivated software systems development student at South East Technological University [(SETU)](https://www.setu.ie/)
+I am a motivated software systems development student at South East Technological University [(SETU)](https://www.setu.ie/)
 in Co. Waterford. In addition to my academic pursuits, I proudly serve as the Student Representative for my course at
 South East Technological University (SETU). In this role, I act as the primary contact between students and the course faculty, including the
 course head and the head of department of computing and mathematics. Through open communication and collaboration with university staff,
 I strive to find effective resolutions and ensure a supportive learning environment. My main interests rely in Machine Learning,
 Model Development for inference, Web Application Development, and Mobile Application Development.
 
-### My Education
+### Education
 
 #### South East Technological University (SETU), Co. Waterford, Ireland
 
 -   **B.Sc in Software Systems Development (Honors)**
-    -   **_Expected Graduation:_** May 2025
+    -   **_Duration:_** September 2021 - May 2025
     -   **_Key Courses:_** Software Engineering, Data Structures and Algorithms, Database Systems, Mobile App Development, Web Development, Statistical Analysis, Computer Networks, Technology Entrepreneurship
     -   **_Achievements:_**
         -   Student Representative for the course
