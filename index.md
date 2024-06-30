@@ -13,21 +13,33 @@ course head and the head of department of computing and mathematics. Through ope
 I strive to find effective resolutions and ensure a supportive learning environment. My main interests rely in Machine Learning,
 Model Development for inference, Web Application Development, and Mobile Application Development.
 
+---
+
 ### Education
 
 #### South East Technological University (SETU), Co. Waterford, Ireland
 
 -   **B.Sc in Software Systems Development (Honors)**
+
     -   **_Duration:_** September 2021 - May 2025
     -   **_Key Courses:_** Software Engineering, Data Structures and Algorithms, Database Systems, Mobile App Development, Web Development, Statistical Analysis, Computer Networks, Technology Entrepreneurship
     -   **_Achievements:_**
         -   Student Representative for the course
         -   First Class Honours for each academic year
 
+-   **QQI Level 5 Information Technology & Multi-Media**
+    -   **_Duration:_** September 2020 - May 2021
+    -   **_Key Courses:_** Computer Programming, Business, Graphic Design, Video Editing, Mathematics for Computer Science, Spreadsheets for business.
+    -   **_Achievements:_**
+        -   Student of the year with outstanding merit
+        -   Graduated with Distinction
+
 #### University College Cork, Ireland (Planned)
 
 -   **M.Sc in Data Science & Analytics**
     -   **_Expected Start Date:_** September 2025
+
+---
 
 ### Work Experience
 
@@ -57,6 +69,8 @@ Model Development for inference, Web Application Development, and Mobile Applica
         -   Trained and mentored new employees
         -   Increased sales of tobacco & cigarette department by 32% year on year on average
 
+---
+
 ### Skills
 
 -   **Programming Languages:** Java, C#, Python, JavaScript, Java, HTML, CSS, SQL
@@ -64,6 +78,8 @@ Model Development for inference, Web Application Development, and Mobile Applica
 -   **Data Science:** Pandas, NumPy, Scikit-learn, TensorFlow
 -   **Tools:** Git, Docker, GitHub, Figma, Office 365, Slack, SAP, AWS ECS, Linux, Power BI
 -   **Soft Skills:** Leadership, Communication, Problem-Solving, Time Management, Customer Service, Teamwork
+
+---
 
 ### Projects
 
@@ -84,10 +100,12 @@ Model Development for inference, Web Application Development, and Mobile Applica
     -   Achieved a 26% reduction in stock shortages by optimizing order recommendations based on sales data.
     -   Implemented PDF report generation for easy and professional documentation of order recommendations.
 
-### Contact
-
-Feel free to reach out to me at [crottjj@gmail.com] or connect with me on [LinkedIn](https://www.linkedin.com/in/josh-crotty/).
-
 ---
 
 Thank you for taking the time to read my website. I'm always open to new opportunities and collaborations in the fields of software development and data science.
+
+---
+
+### Contact
+
+Feel free to reach out to me at [crottjj@gmail.com] or connect with me on [LinkedIn](https://www.linkedin.com/in/josh-crotty/).
