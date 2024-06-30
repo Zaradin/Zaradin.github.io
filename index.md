@@ -20,12 +20,13 @@ Model Development for inference, Web Application Development, and Mobile Applica
 #### South East Technological University (SETU), Co. Waterford, Ireland
 
 -   **B.Sc in Software Systems Development (Honors)**
-
     -   **_Duration:_** September 2021 - May 2025
     -   **_Key Courses:_** Software Engineering, Data Structures and Algorithms, Database Systems, Mobile App Development, Web Development, Statistical Analysis, Computer Networks, Technology Entrepreneurship
     -   **_Achievements:_**
         -   Student Representative for the course
         -   First Class Honours for each academic year
+
+#### Dungarvan College
 
 -   **QQI Level 5 Information Technology & Multi-Media**
     -   **_Duration:_** September 2020 - May 2021
