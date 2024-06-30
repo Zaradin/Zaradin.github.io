@@ -10,7 +10,7 @@ of the applications.
 
 ## University App
 
-<img src="/assets/img/mobile-app-project.png" alt="University App Screenshot" style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 15px;>
+<img src="/assets/img/mobile-app-project.png" alt="University App Screenshot" style="max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 15px;">
 An Android application developed in Kotlin for managing food recipes with features for creating, reading, updating, and deleting recipes. The app offers an >
 **Technologies Used:**
 
@@ -26,7 +26,7 @@ An Android application developed in Kotlin for managing food recipes with featur
 
 ## Heart Disease Classification
 
-<img src="/assets/img/heart-disease-classification.jpg" alt="Heart Disease Prediction Screenshot" style="max-width: 100%; height: auto; border-radius: 8px; >
+<img src="/assets/img/heart-disease-classification.jpg" alt="Heart Disease Prediction Screenshot" style="max-width: 100%; height: auto; border-radius: 8px;">
 Developed a machine learning model using Scikit-learn to predict heart disease. The project involved extensive data preprocessing, feature selection, and ev>
 **Technologies Used:**
 
@@ -42,7 +42,7 @@ Developed a machine learning model using Scikit-learn to predict heart disease. 
 
 ## Automated Ordering System
 
-<img src="/assets/img/automated-ordering.png" alt="Automated Ordering System Screenshot" style="max-width: 100%; height: auto; border-radius: 8px; margin-bo>
+<img src="/assets/img/automated-ordering.png" alt="Automated Ordering System Screenshot" style="max-width: 100%; height: auto; border-radius: 8px; margin-bo">
 Designed and implemented an automated ordering system for a retail store to streamline the process of tobacco and cigarette orders. The system includes CSV >
 **Technologies Used:**
 
