@@ -26,6 +26,11 @@ Model Development for inference, Web Application Development, and Mobile Applica
         -   Student Representative for the course
         -   First Class Honours for each academic year
 
+#### University College Cork, Ireland (Planned)
+
+-   **M.Sc in Mathematical Modelling & Machine Learning**
+    -   **_Expected Start Date:_** September 2025
+
 #### Dungarvan College
 
 -   **QQI Level 5 Information Technology & Multi-Media**
@@ -34,11 +39,6 @@ Model Development for inference, Web Application Development, and Mobile Applica
     -   **_Achievements:_**
         -   Student of the year with outstanding merit
         -   Graduated with Distinction
-
-#### University College Cork, Ireland (Planned)
-
--   **M.Sc in Data Science & Analytics**
-    -   **_Expected Start Date:_** September 2025
 
 ---
 
