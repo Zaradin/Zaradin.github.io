@@ -15,7 +15,7 @@ subtitle: Final Year Project
 
 ## **Project Description**
 
-## Cognify is a cloud-based AI system designed to analyse MRI images and detect signs of Alzheimer’s Disease (AD) using deep learning techniques. This system leverages Magnetic Resonance Imaging (MRI) to provide a reliable and efficient diagnostic tool for researchers and healthcare professionals.
+Cognify is a cloud-based AI system designed to analyse MRI images and detect signs of Alzheimer’s Disease (AD) using deep learning techniques. This system leverages Magnetic Resonance Imaging (MRI) to provide a reliable and efficient diagnostic tool for researchers and healthcare professionals.
 
 ## **Sample MRI Data**
 
@@ -40,8 +40,8 @@ Here are some MRI samples used in the project:
 
 ## **Project Report**
 
-🔗 [Click here to download the full report (PDF)](../Zaradin.github.io/assets/docs/Final_Year_Project.pdf)
+🔗 [Click here to download the full report (PDF)](/assets/docs/Final_Year_Project.pdf)
 
-<embed src="../Zaradin.github.io/assets/docs/Final_Year_Project.pdf" width="100%" height="600px" />
+<embed src="/assets/docs/Final_Year_Project.pdf" width="100%" height="600px" />
 
 ---
