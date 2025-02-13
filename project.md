@@ -6,7 +6,8 @@ subtitle: Final Year Project
 
 **Student Name:** Josh Crotty<br>
 **Student Number:** 20096881<br>
-**Academic Title:** Cloud-Based System for Real-Time Detection of Alzheimer's Disease Through MRI Imaging with Deep Learning
+**Academic Title:** Cloud-Based System for detection of Alzheimer’s Disease using Deep Learning on MRI Images
+**Supervisor:** Dr. Bernard Bulter
 
 ---
 
@@ -26,13 +27,18 @@ Additionally, sample MRI images from the ADNI dataset are showcased below illust
 
 ---
 
-## **Tech Stack**
+## **Technologies**
 
--   **Backend:** Node.js, TorchServe, S3
--   **Deep Learning:** PyTorch, MONAI
--   **Frontend:** React, React Material UI, NiiVue
--   **Database:** MongoDB
--   **Cloud Deployment:** AWS
+| Category                    | Technology Used                        |
+| --------------------------- | -------------------------------------- |
+| **Frontend**                | React, Material UI, NiiVue             |
+| **Backend**                 | Node.js, Express.js                    |
+| **Database**                | MongoDB                                |
+| **Authentication**          | JWT                                    |
+| **Deep Learning**           | PyTorch, MONAI                         |
+| **Model Deployment**        | Streamlit, Docker, TorchServe, AWS     |
+| **Data Processing**         | NumPy, Pandas, FSL (FLIRT/BET), Nipype |
+| **Documentation & Writing** | LaTeX, Overleaf, Zotero, Matplotlib    |
 
 ---
 
