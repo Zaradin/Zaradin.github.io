@@ -40,8 +40,8 @@ Here are some MRI samples used in the project:
 
 ## **Project Report**
 
-🔗 [Click here to download the full report (PDF)](/assets/docs/Final_Year_Project.pdf)
+🔗 [Click here to download the full report (PDF)]({{ site.baseurl }}/assets/docs/Final_Year_Project.pdf)
 
-<embed src="/assets/docs/Final_Year_Project.pdf" width="100%" height="600px" />
+<embed src="{{ site.baseurl }}/assets/docs/Final_Year_Project.pdf" width="100%" height="600px" />
 
 ---
