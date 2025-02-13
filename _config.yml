@@ -23,6 +23,7 @@ navbar-links:
     Home: "index"
     Blog: "blogposts"
     Portfolio: "portfolio"
+    Project: "project"
     About Me: "aboutme"
 
 ################
