@@ -4,12 +4,8 @@ title: Cognify
 subtitle: Final Year Project
 ---
 
-## Project Overview
-
-**Student Name:** Josh Crotty
-
-**Student Number:** 20096881
-
+**Student Name:** Josh Crotty<br>
+**Student Number:** 20096881<br>
 **Academic Title:** Cloud-Based System for Real-Time Detection of Alzheimer's Disease Through MRI Imaging with Deep Learning
 
 ---
@@ -25,7 +21,7 @@ Additionally, sample MRI images from the ADNI dataset are showcased below illust
 
 <figure>
   <img src="{{ site.baseurl }}/assets/img/ADNI_axial_plane_3_labels.png" alt="MRI Sample" width="600"/>
-  <figcaption style="text-align: center; font-style: italic;">MRI Sample - Unprocessed middle slice from each class labels in the axial plane.</figcaption>
+  <figcaption style="font-style: italic;">Unprocessed middle slice from each label in the axial plane. (CN: cognitively normal; MCI: mild cognitive impairment; AD: Alzheimer’s disease)</figcaption>
 </figure>
 
 ---
