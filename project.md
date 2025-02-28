@@ -7,7 +7,7 @@ subtitle: Final Year Project
 **Student Name:** Josh Crotty<br>
 **Student Number:** 20096881<br>
 **Academic Title:** Cloud-Based System for detection of Alzheimer’s Disease using Deep Learning on MRI Images <br>
-**Supervisor:** Dr. Bernard Bulter
+**Supervisor:** Dr. Bernard Butler
 
 ---
 
